@@ -7,12 +7,15 @@ const { createStore } = require("@reduxjs/toolkit");
 // CONSTANTS
 const ADD_USER = 'ADD_USER';
 
+// প্রথমে তোমার অ্যাপে থাকবে— (মানে প্রথমে গ্রামের স্টেট-ব্যাংকে একজন মানুষই আছে— "Nayan")
 
 const initialState = {
     users: ['Nayan'],
     count: 1
 }
 
+// যখন তুমি কাউকে অ্যাপে যোগ করতে চাও, তুমি এই "চিঠি" পাঠাবে। 
+// When you want to add someone to the app, you send this "letter".
 const addUser = (user) => {
     return {
         type: ADD_USER,
@@ -29,7 +32,7 @@ const userReducer = (state = initialState, action) => {
                 count: state.count + 1
             }
         default:
-            state;
+           return state;
     }
 }
 
@@ -42,4 +45,4 @@ store.subscribe(() => {
 
 // store.dispatch(incrementCounterAction());
 store.dispatch(addUser("Robi Thakur"));
-store.dispatch(addUser("Riya"));
+store.dispatch(addUser("Nayan Thakur"));

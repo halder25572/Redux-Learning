@@ -2,65 +2,44 @@
 // action - increment, decrement, reset
 // reducer
 // store
-
 const { createStore } = require("@reduxjs/toolkit");
 
 // CONSTANTS
-const INCREMENT = 'INCREMENT';
-const DECREMENT = 'DECREMENT';
-const RESET = 'RESET';
+const ADD_USER = 'ADD_USER';
+
 
 const initialState = {
-    count: 0
+    users: ['Nayan'],
+    count: 1
 }
 
-const incrementCounterAction = () => {
+const addUser = (user) => {
     return {
-        type: INCREMENT
-    }
-}
-
-const decrementCounterAction = () => {
-    return {
-        type: DECREMENT
-    }
-}
-
-const resetCounterAction = () => {
-    return {
-        type: RESET
+        type: ADD_USER,
+        payload: user
     }
 }
 
 // Creating Reducer
-const counterReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case INCREMENT:
+        case ADD_USER:
             return {
-                ...state,
+                users: [...state.users, action.payload],
                 count: state.count + 1
             }
-        case DECREMENT:
-            return {
-                ...state,
-                count: state.count - 1
-            }
-        case RESET:
-            return {
-                ...state,
-                count: 0
-            }
-    
         default:
             state;
     }
 }
 
 // store
-const store = createStore(counterReducer);
+const store = createStore(userReducer);
 
-store.subscribe(()=> {
+store.subscribe(() => {
     console.log(store.getState());
 });
 
-store.dispatch(incrementCounterAction());
+// store.dispatch(incrementCounterAction());
+store.dispatch(addUser("Robi Thakur"));
+store.dispatch(addUser("Riya"));

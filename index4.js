@@ -65,10 +65,14 @@ const fetchData = () => {
 
         axios.get(API_URL)
             .then(res => {
-                dispatch(getTodosSuccess(res.data));
+                // dispatch(getTodosSuccess(res.data));
+                const todos = res.data;
+                const titles = todos.map(todo => todo.title);
+                dispatch(getTodosSuccess(titles))
             })
             .catch(error => {
-                dispatch(getTodosFailed(error.message));
+                const errorMessage = error.message;
+                dispatch(getTodosFailed(errorMessage));
             });
     };
 };
